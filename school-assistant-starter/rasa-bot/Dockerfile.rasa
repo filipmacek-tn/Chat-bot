@@ -1,0 +1,4 @@
+FROM --platform=linux/arm64/v8 rasa/rasa:3.6.20
+ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+RUN pip install --no-cache-dir "protobuf<4"
+WORKDIR /app

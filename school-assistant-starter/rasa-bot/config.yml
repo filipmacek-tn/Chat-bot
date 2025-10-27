@@ -1,0 +1,12 @@
+language: "xx"
+pipeline:
+- name: WhitespaceTokenizer
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 30
+- name: DucklingEntityExtractor
+  url: "http://duckling:8000"
+  dimensions: ["time"]
+policies:
+- name: RulePolicy
+assistant_id: 20251020-154434-all-osprey

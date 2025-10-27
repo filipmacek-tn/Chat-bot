@@ -1,0 +1,18 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - cześć
+    - hej
+    - dzień dobry
+    - hello
+    - hi
+    - привіт
+    - привет
+
+- intent: wniosek_praktyki
+  examples: |
+    - potrzebuję wniosek o praktyki
+    - I need an internship request
+    - мені потрібна заява на практику
+    - мне нужна заявка на практику

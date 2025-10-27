@@ -1,0 +1,9 @@
+version: "3.1"
+intents:
+  - greet
+  - wniosek_praktyki
+responses:
+  utter_greet:
+    - text: "Cześć! W czym mogę pomóc? (dokument będzie po polsku)"
+    - text: "Hello! How can I help? (document will be in Polish)"
+actions: []
