@@ -1,4 +1,4 @@
-#Instrukcja uruchomienia
+# Instrukcja uruchomienia
 
 
  1) Przejdź do katalogu projektu
@@ -27,4 +27,4 @@ docker compose up -d backend frontend
 
 
 
-##Każde kolejne uruchomienie wymaga tylko uruchomienia kontenera w dockerze 
+## Każde kolejne uruchomienie wymaga tylko uruchomienia kontenera w dockerze 
