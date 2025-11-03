@@ -2,25 +2,23 @@ name: school-assistant-starter
 services:
   redis:
     image: redis:7
-    platform: linux/arm64/v8
     ports:
       - "6379:6379"
 
   duckling:
     image: rasa/duckling
-    platform: linux/amd64           # M1 emulacja x86
-    command: ["duckling-example-exe", "--no-index", "-p", "8000"]
-    restart: unless-stopped
-    
+    # Jeśli masz bardzo mało RAM, możesz włączyć lżejszy start:
+    # command: ["duckling-example-exe", "--no-index", "-p", "8000"]
+
   rasa:
     image: rasa/rasa:3.6.2
-    platform: linux/arm64/v8
     working_dir: /app
     volumes:
-      - /Users/hikaru/Desktop/school-assistant-starter/rasa-bot:/app
+      - ./rasa-bot:/app
     command: >
       run --enable-api --cors '*' --port 5005 --debug
     environment:
+      # bezpieczne na każdej architekturze (omija natywne bindingi protobuf)
       - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
     ports:
       - "5005:5005"
@@ -30,9 +28,9 @@ services:
 
   actions:
     image: rasa/rasa-sdk:3.6.2
-    platform: linux/amd64        # <— tylko ten serwis w emulacji x86
+    # nie zasłaniamy całego /app, tylko katalog z akcjami
     volumes:
-      - /Users/hikaru/Desktop/school-assistant-starter/rasa-bot/actions:/app/actions
+      - ./rasa-bot/actions:/app/actions
     entrypoint: ["python","-m","rasa_sdk"]
     command: ["--actions","actions"]
     ports:
@@ -40,9 +38,8 @@ services:
 
   backend:
     build:
-      context: /Users/hikaru/Desktop/school-assistant-starter/backend
+      context: ./backend
       dockerfile: Dockerfile
-    platform: linux/arm64/v8
     environment:
       REDIS_URL: redis://redis:6379/0
       RASA_URL: http://rasa:5005
@@ -61,9 +58,8 @@ services:
 
   frontend:
     build:
-      context: /Users/hikaru/Desktop/school-assistant-starter/frontend
+      context: ./frontend
       dockerfile: Dockerfile
-    platform: linux/arm64/v8
     ports:
       - "3000:3000"
     depends_on:
