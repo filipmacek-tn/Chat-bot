@@ -1,7 +1,7 @@
 # Instrukcja uruchomienia
 
 
- 1) Przejdź do katalogu projektu
+ 1) Przejdź do katalogu projektu <br>
     cd "C:\path\to\school-assistant-starter"  //Przykładowa sciezka nalezy wpisac własna
 
  2) Zatrzymaj i wyczyść stare (jeśli coś było)
